@@ -46,5 +46,5 @@ VOLUME ${WORLDS_LOC} ${MODS_LOC}
 WORKDIR ${INSTALL_LOC}
 EXPOSE 7777
 # USER terraria
-CMD ["./start-tModLoaderServerStart.sh"]
+ENTRYPOINT ["./start-tModLoaderServerStart.bat"]
 CMD ["-config", "/default-config.txt"]
