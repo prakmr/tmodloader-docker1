@@ -15,6 +15,8 @@ RUN curl -L \
         https://github.com/tModLoader/tModLoader/releases/download/${TMODLOADER_VERSION}/tModLoader.zip && \
     unzip -d /tmp /tmp/terrariaServer.zip && \
     unzip -d /tmp/tModLoader /tmp/tModLoader.zip
+    chmod u+x start-tModLoaderServer.sh &&\
+    chmod u+x start-tModLoader.sh
 
 FROM debian:stretch-slim AS runner
 
