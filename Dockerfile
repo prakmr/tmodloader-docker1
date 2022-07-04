@@ -29,7 +29,7 @@ ENV LOGS_LOC="/logs"
 
 ENV TERRARIA_DATA="/root/.local/share/Terraria/ModLoader"
 
-RUN chmod +x ${INSTALL_LOC}/tModLoader* && \
+RUN chmod +x ${INSTALL_LOC}/start-tModLoaderServer* && \
     mkdir -p ${TERRARIA_DATA} ${LOGS_LOC} && \
     ln -s ${WORLDS_LOC} ${TERRARIA_DATA}/Worlds && \
     ln -s ${MODS_LOC} ${TERRARIA_DATA}/Mods && \
