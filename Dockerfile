@@ -1,7 +1,6 @@
 FROM debian:stretch-slim AS downloader
 
 ARG SERVER_VER="1436"
-ARG SERVER_VER_INC="042"
 ARG TMODLOADER_VERSION="v2022.06.96.4"
 
 RUN apt-get update && \
@@ -31,7 +30,7 @@ ENV TERRARIA_DATA="/root/.local/share/Terraria/ModLoader"
 # TODO: fix; readd chowns to COPYs, adjust TERRARIA_DATA etc
 # RUN useradd -m -u ${UID} -s /bin/false terraria
 
-COPY --from=downloader /tmp/${SERVER_VER}/Linux ${INSTALL_LOC}
+COPY --from=downloader /tmp/${_VER}/Linux ${INSTALL_LOC}
 COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}/
 COPY ./default-config.txt /default-config.txt
 
