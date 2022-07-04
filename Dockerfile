@@ -26,8 +26,11 @@ ENV WORLDS_LOC="/worlds"
 ENV MODS_LOC="/mods"
 ENV LOGS_LOC="/logs"
 
-
 ENV TERRARIA_DATA="/root/.local/share/Terraria/ModLoader"
+
+COPY --from=downloader /tmp/${SERVER_VER}/Linux ${INSTALL_LOC}
+COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}/
+COPY ./default-config.txt /default-config.txt
 
 RUN chmod +x ${INSTALL_LOC}/start-tModLoaderServer* && \
     mkdir -p ${TERRARIA_DATA} ${LOGS_LOC} && \
@@ -38,10 +41,6 @@ RUN chmod +x ${INSTALL_LOC}/start-tModLoaderServer* && \
 
 # TODO: fix; readd chowns to COPYs, adjust TERRARIA_DATA etc
 # RUN useradd -m -u ${UID} -s /bin/false terraria
-
-COPY --from=downloader /tmp/${SERVER_VER}/Linux ${INSTALL_LOC}
-COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}/
-COPY ./default-config.txt /default-config.txt
 
 VOLUME ${WORLDS_LOC} ${MODS_LOC}
 WORKDIR ${INSTALL_LOC}
