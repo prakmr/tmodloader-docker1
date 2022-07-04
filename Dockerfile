@@ -19,6 +19,12 @@ RUN curl -L \
 FROM debian:stretch-slim AS runner
 
 WORKDIR /terraria
+
+COPY --from=downloader /tmp/${SERVER_VER}/Linux /terraria
+COPY --from=downloader /tmp/tModLoader/* /terraria/
+COPY ./default-config.txt /default-config.txt
+
+
 EXPOSE 7777
 # USER terraria
 ENTRYPOINT ["./tModLoaderServer.bin.x86_64"]
