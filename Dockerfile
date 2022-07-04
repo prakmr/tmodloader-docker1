@@ -40,5 +40,5 @@ WORKDIR ${INSTALL_LOC}
 
 EXPOSE 7777
 # USER terraria
-ENTRYPOINT ["./tModLoaderServer.bin.x86_64"]
+ENTRYPOINT ["./start-tModLoaderServerStart.sh"]
 CMD ["-config", "/default-config.txt"]
