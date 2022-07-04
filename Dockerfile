@@ -35,13 +35,6 @@ COPY --from=downloader /tmp/${SERVER_VER}/Linux ${INSTALL_LOC}
 COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}/
 COPY ./default-config.txt /default-config.txt
 
-RUN chmod +x ${INSTALL_LOC}/tModLoaderServer* && \
-    mkdir -p ${TERRARIA_DATA} ${LOGS_LOC} && \
-    ln -s ${WORLDS_LOC} ${TERRARIA_DATA}/Worlds && \
-    ln -s ${MODS_LOC} ${TERRARIA_DATA}/Mods && \
-    ln -s ${LOGS_LOC} ${TERRARIA_DATA}/Logs
-    # chown -R terraria:terraria ${TERRARIA_DATA}
-
 VOLUME ${WORLDS_LOC} ${MODS_LOC}
 WORKDIR ${INSTALL_LOC}
 
