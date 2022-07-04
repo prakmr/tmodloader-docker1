@@ -12,7 +12,7 @@ RUN curl -L \
         https://terraria.org/api/download/pc-dedicated-server/terraria-server-${SERVER_VER}.zip && \
     curl -L \
         -o /tmp/tModLoader.zip \
-        https://github.com/tModLoader/tModLoader/releases/download/${TMODLOADER_VERSION}/tModLoader.Linux.${TMODLOADER_VERSION}.zip && \
+        https://github.com/tModLoader/tModLoader/releases/download/${TMODLOADER_VERSION}/tModLoader.zip && \
     unzip -d /tmp /tmp/terrariaServer.zip && \
     unzip -d /tmp/tModLoader /tmp/tModLoader.zip
 
