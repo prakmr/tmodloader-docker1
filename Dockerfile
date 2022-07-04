@@ -31,7 +31,7 @@ ENV TERRARIA_DATA="/root/.local/share/Terraria/ModLoader"
 # TODO: fix; readd chowns to COPYs, adjust TERRARIA_DATA etc
 # RUN useradd -m -u ${UID} -s /bin/false terraria
 
-COPY --from=downloader /tmp/${_VER}/Linux ${INSTALL_LOC}
+COPY --from=downloader /tmp/${SERVER_VER}/Linux ${INSTALL_LOC}
 COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}/
 COPY ./default-config.txt /default-config.txt
 
