@@ -18,14 +18,31 @@ RUN curl -L \
 
 FROM debian:stretch-slim AS runner
 
-ARG SERVER_VER="1436"
+ARG UID="999"
 
-WORKDIR /terraria
+ENV INSTALL_LOC="/terraria"
+ENV WORLDS_LOC="/worlds"
+ENV MODS_LOC="/mods"
+ENV LOGS_LOC="/logs"
 
-COPY --from=downloader /tmp/${SERVER_VER}/Linux /terraria
-COPY --from=downloader /tmp/tModLoader/* /terraria/
+ENV TERRARIA_DATA="/root/.local/share/Terraria/ModLoader"
+
+# TODO: fix; readd chowns to COPYs, adjust TERRARIA_DATA etc
+# RUN useradd -m -u ${UID} -s /bin/false terraria
+
+COPY --from=downloader /tmp/${SERVER_VER}/Linux ${INSTALL_LOC}
+COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}/
 COPY ./default-config.txt /default-config.txt
 
+RUN chmod +x ${INSTALL_LOC}/tModLoaderServer* && \
+    mkdir -p ${TERRARIA_DATA} ${LOGS_LOC} && \
+    ln -s ${WORLDS_LOC} ${TERRARIA_DATA}/Worlds && \
+    ln -s ${MODS_LOC} ${TERRARIA_DATA}/Mods && \
+    ln -s ${LOGS_LOC} ${TERRARIA_DATA}/Logs
+    # chown -R terraria:terraria ${TERRARIA_DATA}
+
+VOLUME ${WORLDS_LOC} ${MODS_LOC}
+WORKDIR ${INSTALL_LOC}
 
 EXPOSE 7777
 # USER terraria
