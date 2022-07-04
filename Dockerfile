@@ -18,6 +18,8 @@ RUN curl -L \
 
 FROM debian:stretch-slim AS runner
 
+ARG SERVER_VER="1436"
+
 WORKDIR /terraria
 
 COPY --from=downloader /tmp/${SERVER_VER}/Linux /terraria
