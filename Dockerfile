@@ -45,6 +45,4 @@ RUN chmod u+x ${INSTALL_LOC}/* && \
 VOLUME ${WORLDS_LOC} ${MODS_LOC}
 WORKDIR ${INSTALL_LOC}
 EXPOSE 7777
-# USER terraria
-ENTRYPOINT ["./start-tModLoaderServerStart.sh"]
 CMD ["-config", "/default-config.txt"]
