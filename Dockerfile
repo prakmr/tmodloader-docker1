@@ -26,7 +26,15 @@ ENV WORLDS_LOC="/worlds"
 ENV MODS_LOC="/mods"
 ENV LOGS_LOC="/logs"
 
+
 ENV TERRARIA_DATA="/root/.local/share/Terraria/ModLoader"
+
+RUN chmod +x ${INSTALL_LOC}/tModLoaderServer* && \
+    mkdir -p ${TERRARIA_DATA} ${LOGS_LOC} && \
+    ln -s ${WORLDS_LOC} ${TERRARIA_DATA}/Worlds && \
+    ln -s ${MODS_LOC} ${TERRARIA_DATA}/Mods && \
+    ln -s ${LOGS_LOC} ${TERRARIA_DATA}/Logs
+    # chown -R terraria:terraria ${TERRARIA_DATA}
 
 # TODO: fix; readd chowns to COPYs, adjust TERRARIA_DATA etc
 # RUN useradd -m -u ${UID} -s /bin/false terraria
@@ -37,7 +45,6 @@ COPY ./default-config.txt /default-config.txt
 
 VOLUME ${WORLDS_LOC} ${MODS_LOC}
 WORKDIR ${INSTALL_LOC}
-
 EXPOSE 7777
 # USER terraria
 ENTRYPOINT ["./start-tModLoaderServerStart.sh"]
