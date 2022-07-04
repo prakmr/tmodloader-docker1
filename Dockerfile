@@ -18,6 +18,7 @@ RUN curl -L \
 
 FROM debian:stretch-slim AS runner
 
+ARG SERVER_VER="1436"
 ARG UID="999"
 
 ENV INSTALL_LOC="/terraria"
