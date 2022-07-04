@@ -29,7 +29,7 @@ ENV LOGS_LOC="/logs"
 ENV TERRARIA_DATA="/root/.local/share/Terraria/ModLoader"
 
 COPY --from=downloader /tmp/${SERVER_VER}/Linux ${INSTALL_LOC}
-COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}/
+COPY --from=downloader /tmp/tModLoader/* ${INSTALL_LOC}
 COPY ./serverconfig.txt /serverconfig.txt
 
 RUN chmod u+x ${INSTALL_LOC}/* && \
