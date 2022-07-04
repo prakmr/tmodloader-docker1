@@ -45,4 +45,4 @@ RUN chmod u+x ${INSTALL_LOC}/* && \
 VOLUME ${WORLDS_LOC} ${MODS_LOC}
 WORKDIR ${INSTALL_LOC}
 EXPOSE 7777
-ENTRYPOINT ["/bin/bash" "./start-tModLoaderServer.sh"]
+ENTRYPOINT ["./start-tModLoaderServer.sh"]
