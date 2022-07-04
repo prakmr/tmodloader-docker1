@@ -46,4 +46,3 @@ VOLUME ${WORLDS_LOC} ${MODS_LOC}
 WORKDIR ${INSTALL_LOC}
 EXPOSE 7777
 ENTRYPOINT ["./tModLoaderServer"]
-CMD ["-config", "/*config.txt"]
